@@ -1,0 +1,57 @@
+{% extends 'layouts.html' %}
+{% load static %}
+
+{% block title %}
+  <title>Products</title>
+{% endblock %}
+
+{% block main_content %}
+  {% comment %} {% include 'product/header.html' %} {% endcomment %}
+
+  {% comment %} <h1>Products</h1> {% endcomment %}
+  <div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-10">
+        <table class="table table-bordered border-dark table-striped">
+          <tr>
+            <th>Product name</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Product Description</th>
+            <th>Image</th>
+            <th>Category</th>
+            <th>Action</th>
+          </tr>
+          {% for item in products %}
+            <tr>
+              <td>{{ item.product_name }}</td>
+              <td>{{ item.product_price }}</td>
+              <td>{{ item.stock }}</td>
+              <td>{{ item.product_description }}</td>
+              <td>
+                <img src="{{ item.product_image }}" alt="{{ item.product_name }}" width="100" />
+              </td>
+              <td>{{ item.category.category_name }}</td>
+              <td><a href="#" class="btn btn-primary">Edit</a>
+              <a href="#" class="btn btn-danger" onclick="return confirm('Are you want to delete this products')">Delete</a></td>
+            </tr>
+          {% endfor %}
+        </table>
+        <table class="table table-bordered border-dark table-striped">
+          <tr>
+            <th>Category name</th>
+            <th>Action</th>
+          </tr>
+          {% for items in category %}
+            <tr>
+              <td>{{ items.category_name }}</td>
+              <td><a href="#" class="btn btn-primary">Edit</a>
+              <a href="#" class="btn btn-danger" onclick="return confirm('Are you want to delete this category')">Delete</a></td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </div>
+  {% comment %} <img src="{% static 'images/1.jpg' %}" alt="Image not found" width="500" /> {% endcomment %}
+{% endblock %}
