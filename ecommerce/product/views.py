@@ -10,7 +10,7 @@ from django.contrib import messages
 def index(request):
     # return HttpResponse('This is from the product app view')
     products=Product.objects.all() # get in all to get single values
-    category=Category.objects.all() # get in all to get single values
+    category=Category.objects.all() 
     context={
         'products':products,
         'category':category,
